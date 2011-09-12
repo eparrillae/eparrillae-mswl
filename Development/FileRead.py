@@ -1,9 +1,8 @@
 #!/usr/bin/python
 
-# first sample script in Python
-# to run the script just do: $python HelloWorld.py
-
-print "Voy a leer el fichero!"
+# sample script in Python 
+# that reads a text file line by line
+# to run the script just do: $ python FileRead.py
 
 # open the file for reading its contents
 f = open("/etc/passwd")
