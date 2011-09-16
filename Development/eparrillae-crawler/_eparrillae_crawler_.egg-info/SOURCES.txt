@@ -1,0 +1,6 @@
+eparrillae-crawler
+setup.py
+_eparrillae_crawler_.egg-info/PKG-INFO
+_eparrillae_crawler_.egg-info/SOURCES.txt
+_eparrillae_crawler_.egg-info/dependency_links.txt
+_eparrillae_crawler_.egg-info/top_level.txt
