@@ -3,20 +3,21 @@
 # add license text
 
 import urllib2
-import sys
+import argparse
 from BeautifulSoup import BeautifulSoup as Soup
 
-# read url from the command line
+# read url and depth level from the command line
+# capturar la excepcion AttributeError
 
-args = sys.argv[1:]
+parser = argparse.ArgumentParser ( description = " This is a simple web crawler " )
+parser.add_argument ( 'url', nargs=1 , help='target URL')
+#parser.add_argument ( '-n' , '-- deep' , type=int , default=1 , help = 'how deep the craaaawl will go')
+args = parser.parse_args()
+url = args.url.pop()
+#deep = args.deep
 
-try: 
-    #url ="http://www.google.com"
-    url = args[0]
-    print "\nInput url is: ", url
-except IndexError:
-    print "\nERROR: The input url cannot be null!" 
-    exit(0)
+print "\nThe input url is: ", url
+#print "\nThe depth level is: ", deep
 
 # wget the web page
 
@@ -33,6 +34,12 @@ soup_code = Soup ( raw_html )
 links = [ link [ 'href'] for link
                          in soup_code . findAll ( 'a')
                          if link . has_key ( 'href') ]
-			 
-print "This is the list of links: ", links
 
+print links
+for i in links:
+    print i
+			 
+# hacer una funcion que reciba una url y lea sus links
+# la llamamos de forma recursiva, en cada paso le sumamos
+# nos salimos de un bucle infinito cuando se haya alcanzado el nivel
+# identamos la salida

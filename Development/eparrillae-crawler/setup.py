@@ -3,7 +3,7 @@
 from setuptools import setup , find_packages
     
 setup ( name = " eparrillae-crawler " ,
-    version = " 0.1 " ,
+    version = " 1.0 " ,
     packages = find_packages () ,
     scripts = ['eparrillae-crawler'] ,
     install_requires = [] ,
@@ -11,9 +11,9 @@ setup ( name = " eparrillae-crawler " ,
     author = " eparrillae " ,
     author_email = " eparrillae@gmail.com " ,
     description = "  Just another Web Crawler example " ,
-    license = "MIT License" ,
-    keywords = " " ,
+    license = "MIT License http://www.opensource.org/licenses/mit-license.php" ,
+    keywords = " mswl, web, crawler, python, MIT" ,
     url = " " ,
-    long_description = "This is the... " ,
-    download_url = " " , )
+    long_description = "This is the web crawler script for the Development subjet of the MSWL  " ,
+    download_url = " git://github.com/eparrillae/eparrillae-mswl.git " , )
 
