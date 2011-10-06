@@ -1,0 +1,5 @@
+// pkg-config --modversion gtk+-2.0
+// pkg-config --libs gtk+-2.0
+// $ sudo apt-get install libgtk2.0-dev
+// gcc -g -Wall `pkg-config --cflags --libs gtk+-2.0` HelloWorld.c -o test
+// $devhelp
