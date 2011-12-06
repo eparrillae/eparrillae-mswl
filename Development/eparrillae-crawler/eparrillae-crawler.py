@@ -36,13 +36,13 @@ def processUrl(url, level, counter):
     urlList.append(counter * " " + url)
     while counter < level:
 
-        # === wget the target web page...
+        # wget the target web page...
         user_agent = " Mozilla /5.0 ( X11 ; U ; Linux x86_64 ; en - US ) AppleWebKit /534.7 ( KHTML , like Gecko ) Chrome/7.0.517.41 Safari /534.7 "
         page = urllib2.build_opener()
         page.addheaders = [('User - agent', user_agent)]
         raw_html = page.open(url).read()
         
-        # === get the links in this web page...
+        # get the links in this web page...
         counter += 1
         soup_code = Soup(raw_html)
         links = [link ['href'] for link in soup_code.findAll('a')
@@ -50,12 +50,17 @@ def processUrl(url, level, counter):
         for x in links:
             totalLinks += 1
             # absolute paths...
-            if x.startswith("http"): 
+            if x.startswith("http") | x.startswith("https"): 
                 processUrl(x, level, counter)
-            # relative paths...
+            # incomplete paths...
             else:
-                absurl = url + x
-                processUrl(absurl, level, counter)
+                if x.startswith("www"): 
+                    absurl = "http://" + x
+                    processUrl(absurl, level, counter)
+                # relative paths...
+                else:
+                    absurl = url + x
+                    processUrl(absurl, level, counter)
     return totalLinks
 
 ##
