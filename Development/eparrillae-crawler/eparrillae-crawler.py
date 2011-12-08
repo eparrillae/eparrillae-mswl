@@ -34,13 +34,18 @@ from BeautifulSoup import BeautifulSoup as Soup
 def printAndSaveUrls(l):
     
     print "\nThe list of links processed is: \n"
-    f = open('./eparrillae-crawler.output','w')
-    for i in l:
-        print(i)
-        f.write(i)
-        f.write("\n")
-    f.close()
     
+    try:
+        f = open('./eparrillae-crawler.output','w')
+        for i in l:
+            print(i)
+            f.write(i)
+            f.write("\n")
+        f.close()
+        
+    except IOError:
+        print "\nERROR: Could write to file the list of urls retrieved!" 
+        exit(0)
     return
 
 #
