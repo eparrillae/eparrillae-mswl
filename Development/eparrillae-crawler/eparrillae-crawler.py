@@ -28,6 +28,22 @@ import argparse
 from BeautifulSoup import BeautifulSoup as Soup
 
 #
+# method for printing in the stdout the list of urls 
+# and saving them into a file
+#
+def printAndSaveUrls(l):
+    
+    print "\nThe list of links processed is: \n"
+    f = open('./eparrillae-crawler.output','w')
+    for i in l:
+        print(i)
+        f.write(i)
+        f.write("\n")
+    f.close()
+    
+    return
+
+#
 # recursive method for navigating through the urls
 #
 def processUrl(url, level, counter):   
@@ -90,9 +106,10 @@ try:
     urlList = []
     total = processUrl(url, level, 1)
     print "\nThe total amount of links processed is: ", total
-    print "\nThe list of links processed is: \n"
-    for string in urlList:
-        print string
+    printAndSaveUrls(urlList)
+    #print "\nThe list of links processed is: \n"
+    #for string in urlList:
+    #    print string
     
 except urllib2.URLError:
     print "\nERROR: Could not open target url, please check web site is online and available using 'wget' command!" 
