@@ -107,9 +107,6 @@ try:
     total = processUrl(url, level, 1)
     print "\nThe total amount of links processed is: ", total
     printAndSaveUrls(urlList)
-    #print "\nThe list of links processed is: \n"
-    #for string in urlList:
-    #    print string
     
 except urllib2.URLError:
     print "\nERROR: Could not open target url, please check web site is online and available using 'wget' command!" 
