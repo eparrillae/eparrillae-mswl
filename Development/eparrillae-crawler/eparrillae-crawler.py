@@ -27,10 +27,10 @@ import urllib2
 import argparse
 from BeautifulSoup import BeautifulSoup as Soup
 
-#
-# method for printing in the stdout the list of urls 
-# and saving them into a file
-#
+"""
+ method for printing in the stdout the list of retrieved
+ urls and saving them into a file
+"""
 def printAndSaveUrls(l):
     
     print "\nThe list of links processed is: \n"
@@ -48,9 +48,9 @@ def printAndSaveUrls(l):
         exit(0)
     return
 
-#
-# recursive method for navigating through the urls
-#
+"""
+ recursive method for navigating through the urls
+"""
 def processUrl(url, level, counter):   
 
     totalLinks = 0
@@ -84,39 +84,42 @@ def processUrl(url, level, counter):
                     processUrl(absurl, level, counter)
     return totalLinks
 
-##
-# Main
-#
-##
+"""
+ Main
 
-# === read url and depth level from the command line...
-try:
-    parser = argparse.ArgumentParser(description = "This is my web crawler written in Python for the MSWL")
-    parser.add_argument('url', nargs = 1 , help = 'Target URL to be crawled')
-    parser.add_argument('-n', '--level', type = int, default = 1 , help = 'Depth recursive level to be reached by the crawler')
+"""
+def main():
 
-    args = parser.parse_args()
-    url = args.url.pop()
-    level = args.level
+    # === read url and depth level from the command line...
+    try:
+        parser = argparse.ArgumentParser(description = "This is my web crawler written in Python for the MSWL")
+        parser.add_argument('url', nargs = 1 , help = 'Target URL to be crawled')
+        parser.add_argument('-n', '--level', type = int, default = 1 , help = 'Depth recursive level to be reached by the crawler')
 
-    print "\nThe input url is: ", url
-    print "\nThe input depth level is: ", level
+        args = parser.parse_args()
+        url = args.url.pop()
+        level = args.level
 
-except AttributeError:
-    print "\nERROR: Input parameters are not correct, please use --help for details about script usage" 
-    exit(0)
+        print "\nThe input url is: ", url
+        print "\nThe input depth level is: ", level
 
-# === parse input html and store links in a list...
-try:
-    urlList = []
-    total = processUrl(url, level, 1)
-    print "\nThe total amount of links processed is: ", total
-    printAndSaveUrls(urlList)
+    except AttributeError:
+        print "\nERROR: Input parameters are not correct, please use --help for details about script usage" 
+        exit(0)
+
+    # === parse input html and store links in a list...
+    try:
     
-except urllib2.URLError:
-    print "\nERROR: Could not open target url, please check web site is online and available using 'wget' command!" 
-    exit(0)
+        total = processUrl(url, level, 1)
+        print "\nThe total amount of links processed is: ", total
+        printAndSaveUrls(urlList)
+    
+    except urllib2.URLError:
+        print "\nERROR: Could not open target url, please check web site is online and available using 'wget' command!" 
+        exit(0)
+    
+urlList = []
 
-
+if __name__ == "__main__":main()
 
     		 
